@@ -21,14 +21,14 @@ def add() -> Response:
 def mult() -> Response:
     data = request.get_json()
     return jsonify(
-        total=data['a'] * data['b'] * data['c'],
+        product=data['a'] * data['b'] * data['c'],
     )
 
 
 @app.route('/min_and_max', methods=['POST'])
 def min_and_max() -> Response:
     data = request.get_json()
-
     return jsonify(
-        total=[min(data.values()), max(data.values())]
+        max=max(data.values()),
+        min=min(data.values())
     )

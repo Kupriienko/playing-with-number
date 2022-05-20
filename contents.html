@@ -66,7 +66,7 @@
                 }),
             });
             const response = await initialResponse.json();
-            document.getElementById('result_mult').innerText = response.total;
+            document.getElementById('result_mult').innerText = response.product;
         }
     </script>
     <button onclick="min_and_max()">Min and max</button>
@@ -93,7 +93,7 @@
                 }),
             });
             const response = await initialResponse.json();
-            document.getElementById('result_m').innerText = response.total;
+            document.getElementById('result_m').innerText = response.min + " " + response.max;
         }
     </script>
 </body>
