@@ -1,0 +1,100 @@
+<html>
+<head>
+    <title>Playing with numbers</title>
+</head>
+<body>
+    a: <input type="text" id="a"/>
+    <br /><br />
+    b: <input type="text" id="b"/>
+    <br /><br />
+    c: <input type="text" id="c"/>
+    <br /><br />
+    result of addition: <span id="result_add">?</span>
+    <br /><br />
+    result of multiplication: <span id="result_mult">?</span>
+    <br /><br />
+    minimum and maximum number: <span id="result_m">?</span>
+    <br /><br />
+    <button onclick="add()">Add</button>
+    <script type="text/javascript">
+        function getNumbers() {
+            return [
+                Number(document.getElementById('a').value),
+                Number(document.getElementById('b').value),
+                Number(document.getElementById('c').value),
+            ];
+        }
+
+        async function add() {
+            const [a, b, c] = getNumbers();
+            const initialResponse = await fetch(`/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    a: a,
+                    b: b,
+                    c: c,
+                }),
+            });
+            const response = await initialResponse.json();
+            document.getElementById('result_add').innerText = response.total;
+        }
+    </script>
+    <button onclick="multiply()">Multiply</button>
+    <script type="text/javascript">
+        function getNumbers() {
+            return [
+                Number(document.getElementById('a').value),
+                Number(document.getElementById('b').value),
+                Number(document.getElementById('c').value),
+            ];
+        }
+
+        async function multiply() {
+            const [a, b, c] = getNumbers();
+            const initialResponse = await fetch(`/mult`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    a: a,
+                    b: b,
+                    c: c,
+                }),
+            });
+            const response = await initialResponse.json();
+            document.getElementById('result_mult').innerText = response.total;
+        }
+    </script>
+    <button onclick="min_and_max()">Min and max</button>
+    <script type="text/javascript">
+        function getNumbers() {
+            return [
+                Number(document.getElementById('a').value),
+                Number(document.getElementById('b').value),
+                Number(document.getElementById('c').value),
+            ];
+        }
+
+        async function min_and_max() {
+            const [a, b, c] = getNumbers();
+            const initialResponse = await fetch(`/min_and_max`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    a: a,
+                    b: b,
+                    c: c,
+                }),
+            });
+            const response = await initialResponse.json();
+            document.getElementById('result_m').innerText = response.total;
+        }
+    </script>
+</body>
+</html>
